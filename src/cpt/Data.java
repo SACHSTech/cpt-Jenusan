@@ -2,11 +2,12 @@ package cpt;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Data {
-    ArrayList<PlayerData> DataList = new ArrayList<PlayerData>();
+public class Data{
 
-    public void DataFormatter(String[] POTW){
-        PlayerData Player = new PlayerData(POTW[0], POTW[1], POTW[2], POTW[3]);
+    ArrayList<POTW> DataList = new ArrayList<POTW>();
+
+    public void DataFormatter(String[] PlayerInfo){
+        POTW Player = new POTW(PlayerInfo[0], PlayerInfo[1], PlayerInfo[2], PlayerInfo[3]);
         DataList.add(Player);
     }
 
@@ -24,8 +25,17 @@ public class Data {
         }
     }
 
-    public String playerinfo(int i){
+    public String getName(int i){
         return (DataList.get(i)).getName();
+    }
+    public String getTeam(int i){
+        return (DataList.get(i)).getTeam();
+    }
+    public String getYear(int i){
+        return (DataList.get(i)).getYear();
+    }
+    public String getPosition(int i){
+        return (DataList.get(i)).getPosition();
     }
 
 

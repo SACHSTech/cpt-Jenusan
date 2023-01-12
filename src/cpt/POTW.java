@@ -1,13 +1,13 @@
 package cpt;
 
-public class PlayerData {
+public class POTW {
 
     private String name;
     private String team;
     private String year;
     private String position;
     
-    public PlayerData(String name, String team, String year, String position){
+    public POTW(String name, String team, String year, String position){
         this.name = name;
         this.team = team;
         this.year = year;
