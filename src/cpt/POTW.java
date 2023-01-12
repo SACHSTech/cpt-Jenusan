@@ -2,11 +2,13 @@ package cpt;
 
 public class POTW {
 
+    // initializing variables
     private String name;
     private String team;
     private String year;
     private String position;
     
+    // constructor
     public POTW(String name, String team, String year, String position){
         this.name = name;
         this.team = team;
@@ -14,6 +16,7 @@ public class POTW {
         this.position = position;
     }
 
+    // getter methods
     public String getName(){
         return this.name;
     }

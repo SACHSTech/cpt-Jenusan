@@ -3,8 +3,9 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        // constructs
         Data playerData = new Data();
-        playerData.filler();
 
         int x = 1340;
         try{
