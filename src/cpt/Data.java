@@ -33,6 +33,12 @@ public class Data{
         }
     }
 
+    public String[] teamSum(){
+        
+
+        return null;
+    }
+
     // getter methods
     public String getName(int i){
         return (DataList.get(i)).getName();
