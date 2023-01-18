@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 
 public class run {
-    private static TeamTotal test;
 
     public static void main(String[] args) {
-        test = new TeamTotal(2020, 2005);
+        TeamTotal test = new TeamTotal();
+
+        test.list(2020,1979);
         test.print();
-        test = new TeamTotal(2020, 2010);
+        test.list(2020,2015);
         test.print();
-        test = new TeamTotal(2020, 1989);
-        test.print();
+
     }
 }

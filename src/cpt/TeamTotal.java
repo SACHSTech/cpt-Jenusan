@@ -14,11 +14,22 @@ public class TeamTotal {
 
 
 
-    public TeamTotal(int start, int end){
+    public TeamTotal(){
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
-        shortList = new ArrayList<>();
 
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while((line = br.readLine()) != null){
+                totals.put(line, 0);
+            }
+        }catch (Exception e){
+            System.out.print(e);
+        }
+    }
+
+    public void list(int start, int end){
+        shortList = new ArrayList<>();
         for(int i = 0; i < longList.getLength(); i++){
             if (Integer.valueOf(longList.getYear(i)) <= start && Integer.valueOf(longList.getYear(i)) >= end){
                 shortList.add(longList.getInstance(i));
@@ -28,21 +39,13 @@ public class TeamTotal {
     }
 
     public void fill(){
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            while((line = br.readLine()) != null){
-                totals.put(line, 0);
-            }
-        }catch (Exception e){
-            System.out.print(e);
-        }
         for (int i = 0; i < shortList.size(); i++){
             totals.put(shortList.get(i).getTeam(), totals.get(shortList.get(i).getTeam()) + 1);
         }
     }
 
     public void print(){
-        System.out.println(totals.get("Toronto Raptors"));
+        System.out.println(totals.get("Los Angeles Lakers"));
     }
 
 
