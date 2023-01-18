@@ -25,7 +25,10 @@ public class TeamTotal {
                 shortList.add(longList.getInstance(i));
             }
         }
+        fill();
+    }
 
+    public void fill(){
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             while((line = br.readLine()) != null){
@@ -34,11 +37,9 @@ public class TeamTotal {
         }catch (Exception e){
             System.out.print(e);
         }
-
         for (int i = 0; i < shortList.size(); i++){
             totals.put(shortList.get(i).getTeam(), totals.get(shortList.get(i).getTeam()) + 1);
         }
-
     }
 
     public void print(){
