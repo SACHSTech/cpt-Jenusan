@@ -20,15 +20,14 @@ public class Main extends Application {
     private ObservableList<Data> data;
  
     public Parent createContent() {
-        Data A, B, C, D, E;
-        data = FXCollections.observableArrayList(A = new Data("A", 90),
-                                                 B = new Data("B", 0),
-                                                 C = new Data("C", 0),
-                                                 D = new Data("D", 5),
-                                                 E = new Data("D", 5));
+        Data A, B, C, D;
+        data = FXCollections.observableArrayList(A = new Data("A", 20),
+                                                 B = new Data("B", 30),
+                                                 C = new Data("C", 10),
+                                                 D = new Data("D", 40));
         final PieChart pie = new PieChart(data);
         final String drillDownChartCss =
-            getClass().getResource("DrilldownChart.css").toExternalForm();
+            getClass().getResource("0 DrilldownChart.css").toExternalForm();
         pie.getStylesheets().add(drillDownChartCss);
  
         setDrilldownData(pie, A, "a");

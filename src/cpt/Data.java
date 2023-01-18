@@ -1,26 +1,26 @@
 package cpt;
 import java.util.ArrayList;
 import java.io.*;
+import java.io.IOException;
 
 public class Data{
 
-    // initialize arraylist
     ArrayList<POTW> DataList;
+    POTW Player;
 
     public Data(){
-        DataList = new ArrayList<POTW>();
+        DataList  = new ArrayList<POTW>();
         filler();
     }
 
-    // adds player objects to list
     public void DataFormatter(String[] PlayerInfo){
-        POTW Player = new POTW(PlayerInfo[0], PlayerInfo[1], PlayerInfo[2], PlayerInfo[3]);
+        Player = new POTW(PlayerInfo[0], PlayerInfo[1], PlayerInfo[2]);
         DataList.add(Player);
     }
 
     // fills the data using dataformatter class
     public void filler(){
-        String file = "src\\cpt\\0 Data.csv";
+        String file = "src\\cpt\\Data.csv";
         String line;
 
         try{
@@ -31,12 +31,6 @@ public class Data{
         }catch(Exception e){
             System.out.println(e);
         }
-    }
-
-    public String[] teamSum(){
-        
-
-        return null;
     }
 
     // getter methods
@@ -52,6 +46,11 @@ public class Data{
     public String getPosition(int i){
         return (DataList.get(i)).getPosition();
     }
-
+    public ArrayList<POTW> getList(){
+        return DataList;
+    }
+    public int getLength(){
+        return DataList.size();
+    }
 
 }

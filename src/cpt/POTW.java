@@ -9,7 +9,7 @@ public class POTW {
     private String position;
     
     // constructor
-    public POTW(String name, String team, String year, String position){
+    public POTW(String name, String team, String year){
         this.name = name;
         this.team = team;
         this.year = year;
