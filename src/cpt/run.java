@@ -12,7 +12,7 @@ public class run {
         test.print();
         test = new TeamTotal(2020, 2010);
         test.print();
-        test = new TeamTotal(2018, 2016);
+        test = new TeamTotal(2020, 1989);
         test.print();
     }
 }

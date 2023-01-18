@@ -9,7 +9,6 @@ public class TeamTotal {
     Data longList;
     Hashtable<String, Integer> totals;
     ArrayList<POTW> shortList;
-
     String file = "src\\cpt\\0 Teamlist.txt";
     String line;
 
