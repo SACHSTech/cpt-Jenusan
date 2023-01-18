@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class run {
     public static void main(String[] args) {
-        Data player = new Data();
+        TeamTotal test = new TeamTotal( 2019, 2017);
 
-        System.out.println(player.getLength());
+        test.print();
     }
 }
