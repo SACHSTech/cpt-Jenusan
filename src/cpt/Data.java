@@ -43,14 +43,14 @@ public class Data{
     public String getYear(int i){
         return (DataList.get(i)).getYear();
     }
-    public String getPosition(int i){
-        return (DataList.get(i)).getPosition();
-    }
     public ArrayList<POTW> getList(){
         return DataList;
     }
     public int getLength(){
         return DataList.size();
+    }
+    public POTW getInstance(int i){
+        return DataList.get(i);
     }
 
 }

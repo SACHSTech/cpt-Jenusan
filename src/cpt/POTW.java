@@ -6,14 +6,12 @@ public class POTW {
     private String name;
     private String team;
     private String year;
-    private String position;
     
     // constructor
     public POTW(String name, String team, String year){
         this.name = name;
         this.team = team;
         this.year = year;
-        this.position = position;
     }
 
     // getter methods
@@ -27,10 +25,6 @@ public class POTW {
 
     public String getYear(){
         return this.year;
-    }
-
-    public String getPosition(){
-        return this.position;
     }
 
     

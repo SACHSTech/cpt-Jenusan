@@ -1,30 +1,42 @@
 package cpt;
 import java.util.*;
+import java.util.ArrayList;
+import java.io.*; 
+import java.io.IOException;
 
 public class TeamTotal {
 
     Data longList;
     Hashtable<String, Integer> totals;
-    int x;
-    int y;
+    ArrayList<POTW> shortList;
+
+    String file = "src\\cpt\\0 Teamlist.txt";
+    String line;
+
 
 
     public TeamTotal(int start, int end){
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
-        x=0;
-        y=2020;
+        shortList = new ArrayList<>();
 
-        for (int i = 0; i <= 30; i++){
-            totals.put(longList.getTeam(i), 0);
+        for(int i = 0; i < longList.getLength(); i++){
+            if (Integer.valueOf(longList.getYear(i)) <= start && Integer.valueOf(longList.getYear(i)) >= end){
+                shortList.add(longList.getInstance(i));
+            }
         }
 
-        while (y >= end){
-            if (Integer.valueOf(longList.getYear(x)) <= start){
-                totals.put(longList.getTeam(x), totals.get(longList.getTeam(x)) + 1);
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            while((line = br.readLine()) != null){
+                totals.put(line, 0);
             }
-            x++;
-            y--;
+        }catch (Exception e){
+            System.out.print(e);
+        }
+
+        for (int i = 0; i < shortList.size(); i++){
+            totals.put(shortList.get(i).getTeam(), totals.get(shortList.get(i).getTeam()) + 1);
         }
 
     }
