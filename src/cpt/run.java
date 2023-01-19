@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public class run {
 
     public static void main(String[] args) {
-        TeamTotal jj = new TeamTotal(2020, 1970);
-        jj.print();
+        TeamTotal team = new TeamTotal(2020, 1970);
+        PlayerTotal test = new PlayerTotal("Toronto Raptors");
 
-        PlayerTotal test = new PlayerTotal();
         test.print();
         
 
