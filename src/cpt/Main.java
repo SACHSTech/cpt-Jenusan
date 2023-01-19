@@ -21,9 +21,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        TeamTotal = new TeamTotal(2020, 2015);
-        playerTotal = new PlayerTotal("Toronto Raptors");
-        
+        TeamTotal = new TeamTotal(2020, 2015);        
         launch(args);
     }
  
@@ -41,23 +39,21 @@ public class Main extends Application {
             teams.add(TeamData);
         }
 
-        
-        Data A;
-        A = new Data("A", 100);
-
-        teams.add(A);
-
         data = FXCollections.observableArrayList(teams);
         final PieChart pie = new PieChart(data);
         final String drillDownChartCss =
             getClass().getResource("0 DrilldownChart.css").toExternalForm();
         pie.getStylesheets().add(drillDownChartCss);
  
-        setDrilldownData(pie, A, "a");
+        for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
+            setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
+        }
+        
         return pie;
     }
  
-    private void setDrilldownData(final PieChart pie, final Data data, final String labelPrefix) {
+    private void setDrilldownData(final PieChart pie, final Data data, final String TeamName) {
+        playerTotal = new PlayerTotal(TeamName);
 
         players = new ArrayList<>();
         for (int i = 0; i < playerTotal.getPlayerCount(); i++){
