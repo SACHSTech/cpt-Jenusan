@@ -6,11 +6,21 @@ import java.util.ArrayList;
 public class PlayerTotal {
     TeamTotal TeamTotal;
     Hashtable <String, Integer> playertotals;
+    ArrayList<POTW> singleTeam;
 
     public PlayerTotal(){
         TeamTotal = new TeamTotal(2020, 1900);
         playertotals = new Hashtable<>();
+        singleTeam = new ArrayList<>();
         Hashtable();
+    }
+
+    public void singleTeamdata(String str){
+        for (int i = 0; i < TeamTotal.getShortList().size(); i++){
+            if ((TeamTotal.getShortList().get(i).getTeam()).equals(str)){
+                singleTeam.add(TeamTotal.getShortList().get(i));
+            }
+        }
     }
 
     public void Hashtable(){

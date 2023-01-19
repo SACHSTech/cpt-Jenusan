@@ -60,15 +60,11 @@ public class Main extends Application {
         return pie;
     }
  
-    private void setDrilldownData(final PieChart pie, final Data data,
-                                  final String labelPrefix) {
+    private void setDrilldownData(final PieChart pie, final Data data, final String labelPrefix) {
         data.getNode().setOnMouseClicked((MouseEvent t) -> {
             pie.setData(FXCollections.observableArrayList(
                     new Data(labelPrefix + "-1", 7),
-                    new Data(labelPrefix + "-2", 2),
-                    new Data(labelPrefix + "-3", 5),
-                    new Data(labelPrefix + "-4", 3),
-                    new Data(labelPrefix + "-5", 2)));
+                    new Data(labelPrefix + "-2", 2)));
         });
     }
  
