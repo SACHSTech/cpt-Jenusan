@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.io.*; 
 import java.io.IOException;
 
-public class TeamTotal {
-
+public class PlayerTotal {
     Data longList;
     Hashtable<String, Integer> totals;
     Hashtable<String, Integer> usable;
@@ -15,13 +14,10 @@ public class TeamTotal {
 
 
 
-    public TeamTotal(){
+    public PlayerTotal(){
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
-    }
 
-    public void shortenList(int start, int end){
-        shortList = new ArrayList<>();
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             while((line = br.readLine()) != null){
@@ -30,6 +26,10 @@ public class TeamTotal {
         }catch (Exception e){
             System.out.print(e);
         }
+    }
+
+    public void list(int start, int end){
+        shortList = new ArrayList<>();
         
         for(int i = 0; i < longList.getLength(); i++){
             if (Integer.valueOf(longList.getYear(i)) <= start && Integer.valueOf(longList.getYear(i)) >= end){
@@ -48,7 +48,4 @@ public class TeamTotal {
     public void print(){
         System.out.println(totals.get("Los Angeles Lakers"));
     }
-
-
-
 }
