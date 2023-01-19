@@ -15,14 +15,12 @@ public class TeamTotal {
 
 
 
-    public TeamTotal(){
+    public TeamTotal(int start, int end){
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
         Teams = new ArrayList<>();
         shortList = new ArrayList<>();
-    }
 
-    public void shortenList(int start, int end){
         shortList = new ArrayList<>();
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -39,10 +37,6 @@ public class TeamTotal {
                 shortList.add(longList.getInstance(i));
             }
         }
-        fill();
-    }
-
-    public void fill(){
         for (int i = 0; i < shortList.size(); i++){
             totals.put(shortList.get(i).getTeam(), totals.get(shortList.get(i).getTeam()) + 1);
         }

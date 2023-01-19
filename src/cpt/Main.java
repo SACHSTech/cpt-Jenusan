@@ -16,9 +16,7 @@ public class Main extends Application {
     ArrayList<Data> test;
     Data TeamData;
     public static void main(String[] args) {
-        TeamTotal = new TeamTotal();
-        
-        TeamTotal.shortenList(2020, 2015);
+        TeamTotal = new TeamTotal(2020, 2015);
         
         launch(args);
     }

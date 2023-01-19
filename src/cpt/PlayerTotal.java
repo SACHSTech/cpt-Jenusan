@@ -8,7 +8,7 @@ public class PlayerTotal {
     Hashtable <String, Integer> playertotals;
 
     public PlayerTotal(){
-        TeamTotal = new TeamTotal();
+        TeamTotal = new TeamTotal(2020, 1900);
         playertotals = new Hashtable<>();
         Hashtable();
     }
