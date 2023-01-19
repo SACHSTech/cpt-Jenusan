@@ -23,14 +23,21 @@ public class SpinnerApp extends Application {
     /**
      * Java main for when running without JavaFX launcher
      */
+
+     static int num;
+
     public static void main(String[] args) {
+        num = 1979;
         Application.launch(args);
     }
  
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println(num);
         primaryStage.setScene(new Scene(createContent()));
+        System.out.println(num);
         primaryStage.show();
+        System.out.println(num);
     }
  
     public Parent createContent() {
@@ -46,7 +53,7 @@ public class SpinnerApp extends Application {
         root.setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
  
             /* Integer spinners */
-            SpinnerValueFactory svf = new SpinnerValueFactory.IntegerSpinnerValueFactory(1979, 2020);
+            SpinnerValueFactory svf = new SpinnerValueFactory.IntegerSpinnerValueFactory(num, 2020);
             Spinner sp = new Spinner();
             sp.setValueFactory(svf);
             sp.getStyleClass().add("spinner");

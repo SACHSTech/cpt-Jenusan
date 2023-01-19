@@ -10,6 +10,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.*;
+import javafx.scene.Group;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import java.util.Arrays;
 
  
  
@@ -25,11 +31,13 @@ public class Main extends Application {
 
     static int Start;
     static int End;
+    static int num;
 
 
     public static void main(String[] args) {
         Start = 2020;
         End = 2015;
+        num = 1979;
         TeamTotal = new TeamTotal(Start, End);
         findPlayers = new Hashtable<>(); 
 
