@@ -30,8 +30,10 @@ public class Main extends Application {
         Start = 2020;
         End = 2015;
         TeamTotal = new TeamTotal(Start, End);
-        findPlayers = new Hashtable<>();        
+        findPlayers = new Hashtable<>(); 
+
         launch(args);
+
     }
  
     /**
@@ -57,7 +59,6 @@ public class Main extends Application {
         for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
             setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
         }
-        
         return pie;
     }
  
