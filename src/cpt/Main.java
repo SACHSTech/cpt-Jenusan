@@ -57,7 +57,7 @@ public class Main extends Application {
     public Parent createContent() {
         teams = new ArrayList<>();
         for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
-            TeamData = new Data(TeamTotal.getTeamList().get(i), TeamTotal.getTable().get(TeamTotal.getTeamList().get(i)));
+            TeamData = new Data(TeamTotal.getTeamList().get(i) + " - " + TeamTotal.getTable().get(TeamTotal.getTeamList().get(i)), TeamTotal.getTable().get(TeamTotal.getTeamList().get(i)));
             teams.add(TeamData);
         }
 
@@ -82,7 +82,7 @@ public class Main extends Application {
 
 
         for (int x = 0; x < playerTotal.getPlayerCount(); x++){
-            playerData = new Data(playerTotal.getNameList().get(x),playerTotal.getTable().get(playerTotal.getNameList().get(x)));
+            playerData = new Data(playerTotal.getNameList().get(x) + " - " + playerTotal.getTable().get(playerTotal.getNameList().get(x)),playerTotal.getTable().get(playerTotal.getNameList().get(x)));
             players.add(playerData);
         }
         findPlayers.put(TeamTotal.getTeamList().get(i), players);
