@@ -19,6 +19,7 @@ public class TeamTotal {
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
         Teams = new ArrayList<>();
+        shortList = new ArrayList<>();
     }
 
     public void shortenList(int start, int end){
@@ -56,7 +57,12 @@ public class TeamTotal {
     public Hashtable<String, Integer> getTable(){
         return totals;
     }
-
+    public ArrayList<POTW> getShortList(){
+        return shortList;
+    }
+    public void print(){
+        System.out.println(totals.get("Toronto Raptors"));
+    }
 
 
 }

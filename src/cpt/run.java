@@ -7,9 +7,16 @@ import java.util.ArrayList;
 public class run {
 
     public static void main(String[] args) {
-        TeamTotal test = new TeamTotal();
+        TeamTotal jj = new TeamTotal();
+        jj.shortenList(2020, 2015);
+        jj.print();
+        jj.shortenList(2020, 2000);
+        jj.print();
+        jj.shortenList(2020, 2000);
+        jj.print();
 
-        test.shortenList(2020, 2010);
+        PlayerTotal test = new PlayerTotal();
+        test.print();
         
 
     }
