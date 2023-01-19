@@ -19,9 +19,14 @@ public class Main extends Application {
     Data TeamData;
     Data playerData;
 
+    static int Start;
+    static int End;
+
 
     public static void main(String[] args) {
-        TeamTotal = new TeamTotal(2020, 2015);        
+        Start = 2020;
+        End = 2015;
+        TeamTotal = new TeamTotal(Start, End);        
         launch(args);
     }
  
@@ -53,7 +58,7 @@ public class Main extends Application {
     }
  
     private void setDrilldownData(final PieChart pie, final Data data, final String TeamName) {
-        playerTotal = new PlayerTotal(TeamName);
+        playerTotal = new PlayerTotal(TeamName, Start, End);
 
         players = new ArrayList<>();
         for (int i = 0; i < playerTotal.getPlayerCount(); i++){

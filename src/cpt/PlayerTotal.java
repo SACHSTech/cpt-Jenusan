@@ -3,14 +3,15 @@ import java.util.*;
 import java.util.ArrayList;
 
 
-public class PlayerTotal {
+public class PlayerTotal extends TeamTotal{
     TeamTotal TeamTotal;
     Hashtable <String, Integer> playertotals;
     ArrayList<POTW> singleTeam;
     ArrayList <String> names;
 
-    public PlayerTotal(String str){
-        TeamTotal = new TeamTotal(2020, 1900);
+    public PlayerTotal(String str, int Start, int End){
+        super(Start, End);
+        TeamTotal = new TeamTotal(Start, End);
         playertotals = new Hashtable<>();
         singleTeam = new ArrayList<>();
         names = new ArrayList<>();
