@@ -18,7 +18,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         TeamTotal = new TeamTotal();
         
-        TeamTotal.shortenList(2020, 1999);
+        TeamTotal.shortenList(2020, 1900);
         
         launch(args);
     }
