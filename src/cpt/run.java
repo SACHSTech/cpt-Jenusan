@@ -9,7 +9,7 @@ public class run {
     public static void main(String[] args) {
         TeamTotal test = new TeamTotal();
 
-        test.list(2020,1979);
+        test.list(2020,2015);
         test.print();
         test.list(2020,2015);
         test.print();

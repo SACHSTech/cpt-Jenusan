@@ -8,6 +8,7 @@ public class TeamTotal {
 
     Data longList;
     Hashtable<String, Integer> totals;
+    Hashtable<String, Integer> usable;
     ArrayList<POTW> shortList;
     String file = "src\\cpt\\0 Teamlist.txt";
     String line;
@@ -30,6 +31,7 @@ public class TeamTotal {
 
     public void list(int start, int end){
         shortList = new ArrayList<>();
+        
         for(int i = 0; i < longList.getLength(); i++){
             if (Integer.valueOf(longList.getYear(i)) <= start && Integer.valueOf(longList.getYear(i)) >= end){
                 shortList.add(longList.getInstance(i));
