@@ -9,11 +9,14 @@ import javafx.scene.chart.PieChart.Data;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import java.util.*;
  
  
 public class Main extends Application {
     static TeamTotal TeamTotal;
     static PlayerTotal playerTotal;
+
+    static Hashtable <String, ArrayList<Data>> findPlayers;
     ArrayList<Data> teams;
     ArrayList<Data> players;
     Data TeamData;
@@ -26,7 +29,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         Start = 2020;
         End = 2015;
-        TeamTotal = new TeamTotal(Start, End);        
+        TeamTotal = new TeamTotal(Start, End);
+        findPlayers = new Hashtable<>();        
         launch(args);
     }
  
@@ -58,16 +62,24 @@ public class Main extends Application {
     }
  
     private void setDrilldownData(final PieChart pie, final Data data, final String TeamName) {
-        playerTotal = new PlayerTotal(TeamName, Start, End);
+
+        for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
+            playerTotal = new PlayerTotal(TeamTotal.getTeamList().get(i), Start, End);
 
         players = new ArrayList<>();
-        for (int i = 0; i < playerTotal.getPlayerCount(); i++){
-            playerData = new Data(playerTotal.getNameList().get(i),playerTotal.getTable().get(playerTotal.getNameList().get(i)));
+
+
+        for (int x = 0; x < playerTotal.getPlayerCount(); x++){
+            playerData = new Data(playerTotal.getNameList().get(x),playerTotal.getTable().get(playerTotal.getNameList().get(x)));
             players.add(playerData);
         }
+        findPlayers.put(TeamTotal.getTeamList().get(i), players);
+    }
 
         data.getNode().setOnMouseClicked((MouseEvent t) -> {
-            pie.setData(FXCollections.observableArrayList(players));
+            System.out.println(TeamName);
+            System.out.println(findPlayers.get(TeamName));
+            pie.setData(FXCollections.observableArrayList(findPlayers.get(TeamName)));
         });
     }
  

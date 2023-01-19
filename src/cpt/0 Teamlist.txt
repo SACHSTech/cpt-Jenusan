@@ -25,13 +25,13 @@ Minnesota Timberwolves
 Indiana Pacers
 Detroit Pistons
 Orlando Magic
-Houston Rockets
 Cleveland Cavaliers
 Charlotte Bobcats
 New Orleans Hornets
-New Jersey Nets
 Seattle SuperSonics
 Washington Bullets
 San Diego Clippers
 Kansas City Kings
 Los Angeles Lakers
+New Jersey Nets
+Houston Rockets
