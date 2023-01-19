@@ -8,23 +8,48 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.util.ArrayList;
  
  
-/**
+public class Main extends Application {
+    static TeamTotal TeamTotal;
+    ArrayList<Data> test;
+    Data TeamData;
+    public static void main(String[] args) {
+        TeamTotal = new TeamTotal();
+        
+        TeamTotal.shortenList(2020, 1999);
+        
+        launch(args);
+    }
+ 
+    /**
  * A pie chart that provides the ability to drill down through data. Selecting a
  * segment in the initial pie chart causes the pie chart to display detailed data
  * for the selected segment.
  */
-public class Main extends Application {
- 
     private ObservableList<Data> data;
  
     public Parent createContent() {
+        test = new ArrayList<>();
+        for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
+            TeamData = new Data(TeamTotal.getTeamList().get(i), TeamTotal.getTable().get(TeamTotal.getTeamList().get(i)));
+            test.add(TeamData);
+        }
+
+        
         Data A, B, C, D;
-        data = FXCollections.observableArrayList(A = new Data("A", 20),
-                                                 B = new Data("B", 30),
-                                                 C = new Data("C", 10),
-                                                 D = new Data("D", 40));
+        A = new Data("A", 0);
+        B = new Data("B", 0);
+        C = new Data("C", 0);
+        D = new Data("D", 0);
+
+        test.add(A);
+        test.add(B);
+        test.add(C);
+        test.add(D);
+
+        data = FXCollections.observableArrayList(test);
         final PieChart pie = new PieChart(data);
         final String drillDownChartCss =
             getClass().getResource("0 DrilldownChart.css").toExternalForm();
@@ -57,7 +82,4 @@ public class Main extends Application {
     /**
      * Java main for when running without JavaFX launcher
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
