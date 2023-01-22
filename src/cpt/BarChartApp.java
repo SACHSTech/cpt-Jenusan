@@ -39,6 +39,7 @@ public class BarChartApp extends Application {
 
         str.add("LeBron James");
         str.add("Giannis Antetokounmpo");
+        str.add("Kyle Lowry");
 
         barData = new BarData(str);
 
@@ -73,11 +74,8 @@ public class BarChartApp extends Application {
 
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        yAxis = new NumberAxis("Units Sold", 0.0d, barData.getMax() * 1.25 , 1000.0d);
-        ObservableList<BarChart.Series> barChartData =
-            FXCollections.observableArrayList(
-                dataCollection
-            );
+        yAxis = new NumberAxis("Player Of The Weeks", 0.0d, barData.getMax() * 1.1 , 10.0d);
+        ObservableList<BarChart.Series> barChartData = FXCollections.observableArrayList(dataCollection);
 
 
         chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
