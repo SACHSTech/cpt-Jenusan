@@ -15,11 +15,7 @@ public class run {
 
         barData = new BarData(str);
 
-        //barData.print();
-        
-        for (int i = 0; i < barData.getYears().length; i++){
-        System.out.println(barData.getYears()[i]);
-        }
+        barData.print();
         
 
     }
