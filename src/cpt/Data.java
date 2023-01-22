@@ -20,7 +20,7 @@ public class Data{
 
     // fills the data using dataformatter class
     public void filler(){
-        String file = "src\\cpt\\Data.csv";
+        String file = "src\\cpt\\0 Data.csv";
         String line;
 
         try{

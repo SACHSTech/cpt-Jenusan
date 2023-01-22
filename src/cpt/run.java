@@ -5,9 +5,21 @@ import java.util.ArrayList;
 
 
 public class run {
+    static BarData barData;
 
     public static void main(String[] args) {
-        BarData barData = new BarData(<"Lebron James", "Lebron James">);
+        ArrayList<String> str = new ArrayList<>();
+
+        str.add("LeBron James");
+        str.add("Giannis Antetokounmpo");
+
+        barData = new BarData(str);
+
+        //barData.print();
+        
+        for (int i = 0; i < barData.getYears().length; i++){
+        System.out.println(barData.getYears()[i]);
+        }
         
 
     }

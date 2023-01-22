@@ -1,6 +1,5 @@
 package cpt;
- 
- 
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +9,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
+import java.util.*;
  
  
 /**
@@ -19,7 +19,24 @@ import javafx.stage.Stage;
  */
 public class BarChartApp extends Application {
 
+    static BarData barData;
+
+    ArrayList<BarChart.Data> dataSet;
+    ArrayList<BarChart.Series> dataCollection;
+    BarChart.Data BarChartData;
+    BarChart.Series BarChartSeries;
+    
+
+
+
     public static void main(String[] args) {
+        ArrayList<String> str = new ArrayList<>();
+
+        str.add("Norman Powell");
+        str.add("Giannis Antetokounmpo");
+
+        barData = new BarData(str);
+        
         launch(args);
     }
  
@@ -28,8 +45,19 @@ public class BarChartApp extends Application {
     private NumberAxis yAxis;
  
     public Parent createContent() {
+        dataSet = new ArrayList<>();
+        dataCollection = new ArrayList<>();
+
+        BarChartData = new BarChart.Data("2016", 8);
+        dataSet.add(BarChartData);
+        BarChartData = new BarChart.Data("2015", 8);
+        dataSet.add(BarChartData);
+
+        BarChartSeries = new BarChart.Series("trgh", FXCollections.observableArrayList(dataSet));
+        dataCollection.add(BarChartSeries);
+        //dataCollection.add(BarChartSeries);
         
-        String[] years = {"2007", "2008", "2009", "2010"};
+        String[] years = barData.getYears();
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(years));
         yAxis = new NumberAxis("Units Sold", 0.0d, 10, 1000.0d);
@@ -37,17 +65,22 @@ public class BarChartApp extends Application {
             FXCollections.observableArrayList(
                 new BarChart.Series("Apples",
                                     FXCollections.observableArrayList(
-                    new BarChart.Data(years[0], 8),
-                    new BarChart.Data(years[1], 8),
-                    new BarChart.Data(years[2], 8))),
-
-                new BarChart.Series("Lemons",
+                    new BarChart.Data(years[0], 567d),
+                    new BarChart.Data(years[1], 1292d),
+                    new BarChart.Data(years[2], 1292d))),
+                    new BarChart.Series("Apples",
                                     FXCollections.observableArrayList(
-                    new BarChart.Data(years[0], 8),
-                    new BarChart.Data(years[1], 8),
-                    new BarChart.Data(years[2], 8))),
+                    new BarChart.Data(years[0], 567d),
+                    new BarChart.Data(years[1], 1292d),
+                    new BarChart.Data(years[2], 1292d))),
+                new BarChart.Series("Oranges",
+                                    FXCollections.observableArrayList(
+                    new BarChart.Data(years[0], 1154),
+                    new BarChart.Data(years[1], 1927),
+                    new BarChart.Data(years[2], 2774)))
+            );
 
-                new BarChart.Series("Oranges", FXCollections.observableArrayList(new BarChart.Data(years[0], 8),new BarChart.Data(years[1], 8),new BarChart.Data(years[2], 8))));
+
         chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
         return chart;
     }
