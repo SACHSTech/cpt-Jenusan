@@ -36,7 +36,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Start = 2020;
-        End = 2015;
+        End = 1983;
         num = 1979;
         TeamTotal = new TeamTotal(Start, End);
         findPlayers = new Hashtable<>(); 
