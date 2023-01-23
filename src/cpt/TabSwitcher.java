@@ -71,6 +71,24 @@ public class TabSwitcher extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
 
+    public static void main(String[] args) {
+        Start = 2020;
+        End = 1983;
+        num = 1979;
+        TeamTotal = new TeamTotal(Start, End);
+        findPlayers = new Hashtable<>(); 
+        str = new ArrayList<>();
+
+        str.add("Giannis Antetokounmpo");
+        str.add("Kyle Lowry");
+
+        barData = new BarData(str);
+
+        barData.print();
+
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
@@ -103,6 +121,7 @@ public class TabSwitcher extends Application {
 
 
         chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
+        chart.setMaxSize(1000, 1000);
         tab1.setContent(chart);
         
         Tab tab2 = new Tab("Tab 2");
@@ -122,6 +141,7 @@ public class TabSwitcher extends Application {
         for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
             setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
         }
+        pie.setMaxSize(1000,1000);
         tab2.setContent(pie);
         
         tabPane.getTabs().addAll(tab1, tab2);
@@ -134,25 +154,6 @@ public class TabSwitcher extends Application {
         primaryStage.setTitle("Tab Switcher");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        Start = 2020;
-        End = 1983;
-        num = 1979;
-        TeamTotal = new TeamTotal(Start, End);
-        findPlayers = new Hashtable<>(); 
-        str = new ArrayList<>();
-
-        str.add("LeBron James");
-        str.add("Giannis Antetokounmpo");
-        str.add("Kyle Lowry");
-
-        barData = new BarData(str);
-
-        barData.print();
-
-        launch(args);
     }
 
     private void setDrilldownData(final PieChart pie, final Data data, final String TeamName) {
