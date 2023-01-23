@@ -32,11 +32,6 @@ public class BarChartWithListView extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Bar Chart Example");
-        bc.setTitle("Data");
-        xAxis.setLabel("Year");       
-        yAxis.setLabel("Value");
-
         dataList.setItems(data);
         dataList.setPrefSize(200, 200);
 

@@ -20,6 +20,23 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart.Series;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -114,10 +131,10 @@ public class Main extends Application {
         });
 
 
-        HBox hBox2 = new HBox(chart, listView);
+        HBox hBox = new HBox(chart, listView);
         chart.setMinSize(1250, 750);
-        hBox2.setHgrow(chart, Priority.ALWAYS);
-        tab1.setContent(hBox2);
+        hBox.setHgrow(chart, Priority.ALWAYS);
+        tab1.setContent(hBox);
         
         ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
@@ -160,12 +177,8 @@ public class Main extends Application {
         for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
             setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
         }
-
-        pie.setMaxSize(1000,1000);
         
-        HBox hBox = new HBox(pie, slider);
-        HBox.setHgrow(pie, Priority.ALWAYS);
-        tab2.setContent(hBox);
+        tab2.setContent(pie);
         
         tabPane.getTabs().addAll(tab1, tab2);
 
