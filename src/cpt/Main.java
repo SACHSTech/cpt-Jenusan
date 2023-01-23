@@ -67,12 +67,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         str = new ArrayList<>();
         str.add("LeBron James");
+        str.add("Dwight");
         TabPane tabPane = new TabPane();
         
         Tab tab1 = new Tab("Tab 1");
 
         ListView<String> listView = new ListView<>();
-        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard");
+        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard");
         listView.setItems(items);
 
         // Add a listener to detect when an item is selected
@@ -129,14 +130,13 @@ public class Main extends Application {
         final PieChart pie = new PieChart(data);
 
         Slider slider = new Slider();
-        slider.setMin(1979);
-        slider.setMax(2020);
+        slider.setMin(0);
+        slider.setMax(100);
         slider.setValue(10);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setBlockIncrement(10);
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            //chart.getData().get(0).setPieValue(newValue.doubleValue());
             System.out.println(newValue);
             End = (int)newValue.doubleValue();
             pie.getData().get(0).setPieValue(End);
