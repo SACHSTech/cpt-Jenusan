@@ -41,7 +41,7 @@ public class BarChartApp extends Application {
         str.add("Giannis Antetokounmpo");
         str.add("Kyle Lowry");
 
-        barData = new BarData(str);
+        barData = new BarData();
 
         barData.print();
 

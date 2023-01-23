@@ -13,7 +13,8 @@ public class run {
         str.add("LeBron James");
         str.add("Giannis Antetokounmpo");
 
-        barData = new BarData(str);
+        barData = new BarData();
+        barData.filler(str);
 
         barData.print();
         

@@ -16,17 +16,22 @@ public class BarData {
 
     ArrayList<String> players;
 
-    public BarData(ArrayList<String> players){
-        this.players = players;
-        playerstats = new Hashtable<>();
-        yearTotalCollection = new ArrayList<>();
-        yearList = new ArrayList<>();
-        nameList = new ArrayList<>();
+    public BarData(){
+        players = new ArrayList<>();
         data = new Data();
         lowestYear = 2020;
         highestYear = 1979;
         max = 1;
+    }
 
+    public void filler(ArrayList<String> players){
+        playerstats = new Hashtable<>();
+        yearTotalCollection = new ArrayList<>();
+        yearList = new ArrayList<>();
+        nameList = new ArrayList<>();
+
+        this.players = players;
+        
         for (int i = 0; i < players.size(); i++){
             yearTotal = new Hashtable<>();
 

@@ -20,8 +20,8 @@ public class TeamTotal {
         totals =  new Hashtable<String, Integer>();
         Teams = new ArrayList<>();
         shortList = new ArrayList<>();
-
         shortList = new ArrayList<>();
+        
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             while((line = br.readLine()) != null){
