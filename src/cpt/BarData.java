@@ -1,7 +1,7 @@
 package cpt;
 import java.util.*;
 
-public class BarData {
+public class BarData{
     BarPlayerData barPlayerData;
     Hashtable <String, Hashtable<String, Integer>> playerstats;
     ArrayList<Hashtable> yearTotalCollection;

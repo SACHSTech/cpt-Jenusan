@@ -37,8 +37,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main extends Application{
 
     static TeamTotal TeamTotal;
     static PlayerTotal playerTotal;
@@ -72,7 +89,16 @@ public class Main extends Application {
 
     static int newValue;
 
-    public static void main(String[] args) {
+    final CategoryAxis xAxisList = new CategoryAxis();
+    final NumberAxis yAxisList = new NumberAxis();
+    XYChart.Series series = new XYChart.Series();
+    TextField yearField = new TextField();
+    TextField valueField = new TextField();
+    Button addButton = new Button("Add");
+    ListView<String> dataList = new ListView<>();
+    ObservableList<String> ListData = FXCollections.observableArrayList();
+
+    public static void main(String[] args) throws Exception{
         Start = 2020;
         End = 1983;
         findPlayers = new Hashtable<>(); 
@@ -118,20 +144,29 @@ public class Main extends Application {
         chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
         chart.setMaxSize(1000, 1000);
 
-        ListView<String> listView = new ListView<>();
-        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard");
-        listView.setItems(items);
-        // Add a listener to detect when an item is selected
-        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
-            str.add(newValue.toString());
-            barData.filler(str);
-            System.out.println(barData.playerstats.size());
-            
+
+        dataList.setPrefSize(200, 200);
+
+        HBox inputBox = new HBox();
+        inputBox.setSpacing(10);
+        inputBox.getChildren().addAll(yearField, addButton);
+
+        VBox Listroot = new VBox();
+        Listroot.setSpacing(10);
+        Listroot.setPadding(new Insets(10, 10, 10, 10));
+        Listroot.getChildren().addAll(inputBox, dataList);
+
+        addButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+            }
         });
 
+        Scene Listscene  = new Scene(Listroot, 800, 600);
 
-        HBox hBox = new HBox(chart, listView);
+
+        HBox hBox = new HBox(chart, Listroot);
         chart.setMinSize(1250, 750);
         hBox.setHgrow(chart, Priority.ALWAYS);
         tab1.setContent(hBox);
