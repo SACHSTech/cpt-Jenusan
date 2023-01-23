@@ -81,8 +81,6 @@ public class TabSwitcher extends Application {
     public static void main(String[] args) {
         Start = 2020;
         End = 1983;
-        num = 1979;
-        newValue = 1980;
         findPlayers = new Hashtable<>(); 
         str = new ArrayList<>();
 
@@ -100,7 +98,7 @@ public class TabSwitcher extends Application {
         
         Tab tab1 = new Tab("Tab 1");
 
-        TeamTotal = new TeamTotal(Start, newValue);
+        TeamTotal = new TeamTotal(Start, End);
 
         dataCollection = new ArrayList<>();
 
@@ -140,15 +138,7 @@ public class TabSwitcher extends Application {
 
         data = FXCollections.observableArrayList(teams);
         final PieChart pie = new PieChart(data);
-        final String drillDownChartCss =
-            getClass().getResource("0 DrilldownChart.css").toExternalForm();
-        pie.getStylesheets().add(drillDownChartCss);
- 
-        for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
-            setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
-        }
 
-        pie.setMaxSize(1000,1000);
         Slider slider = new Slider();
         slider.setMin(1979);
         slider.setMax(2020);
@@ -159,10 +149,22 @@ public class TabSwitcher extends Application {
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             //chart.getData().get(0).setPieValue(newValue.doubleValue());
             System.out.println(newValue);
-            TeamTotal = new TeamTotal(Start, (int)newValue.doubleValue());
+            End = (int)newValue.doubleValue();
+            pie.getData().get(0).setPieValue(End);
         });
         slider.setMaxSize(1000, 1000);
         slider.setMinWidth(400);
+
+
+        final String drillDownChartCss =
+            getClass().getResource("0 DrilldownChart.css").toExternalForm();
+        pie.getStylesheets().add(drillDownChartCss);
+ 
+        for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
+            setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
+        }
+
+        pie.setMaxSize(1000,1000);
         
         HBox hBox = new HBox(pie, slider);
         HBox.setHgrow(pie, Priority.ALWAYS);
