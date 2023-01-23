@@ -26,7 +26,18 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import java.util.Arrays;
-
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+//import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
+import javafx.stage.Stage;
+import java.util.*;
 
 public class TabSwitcher extends Application {
 
@@ -43,13 +54,56 @@ public class TabSwitcher extends Application {
     static int End;
     static int num;
 
+    static BarData barData;
+
+    ArrayList<javafx.scene.chart.XYChart.Data> dataSet;
+    ArrayList<Series> dataCollection;
+    javafx.scene.chart.XYChart.Data barChartData;
+    Series BarChartSeries;
+
+    int yearCount;
+
+    static ArrayList<String> str;
+
     private ObservableList<Data> data;
+
+    private BarChart chart;
+    private CategoryAxis xAxis;
+    private NumberAxis yAxis;
 
     @Override
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
         
         Tab tab1 = new Tab("Tab 1");
+
+
+        dataCollection = new ArrayList<>();
+
+        for (int i = 0; i < barData.playerstats.size(); i++){
+            dataSet = new ArrayList<>();
+            for (int x = 0; x < barData.yearTotalCollection.get(i).size(); x++){
+                barChartData = new BarChart.Data(barData.yearList.get(yearCount), barData.yearTotalCollection.get(i).get(barData.yearList.get(yearCount)));
+                dataSet.add(barChartData);
+
+                yearCount++;
+            }
+            BarChartSeries = new BarChart.Series(barData.getPlayerList().get(i), FXCollections.observableArrayList(dataSet));
+            dataCollection.add(BarChartSeries);
+        }
+
+        
+        String[] years = barData.getYears();
+
+
+        xAxis = new CategoryAxis();
+        xAxis.setCategories(FXCollections.<String>observableArrayList(years));
+        yAxis = new NumberAxis("Player Of The Weeks", 0.0d, barData.getMax() * 1.1 , 10.0d);
+        ObservableList<BarChart.Series> barChartData = FXCollections.observableArrayList(dataCollection);
+
+
+        chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
+        tab1.setContent(chart);
         
         Tab tab2 = new Tab("Tab 2");
         
@@ -88,6 +142,15 @@ public class TabSwitcher extends Application {
         num = 1979;
         TeamTotal = new TeamTotal(Start, End);
         findPlayers = new Hashtable<>(); 
+        str = new ArrayList<>();
+
+        str.add("LeBron James");
+        str.add("Giannis Antetokounmpo");
+        str.add("Kyle Lowry");
+
+        barData = new BarData(str);
+
+        barData.print();
 
         launch(args);
     }
