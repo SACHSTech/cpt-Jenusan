@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
@@ -23,8 +24,12 @@ import java.util.*;
 import javafx.scene.Group;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -71,11 +76,13 @@ public class TabSwitcher extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
 
+    static int newValue;
+
     public static void main(String[] args) {
         Start = 2020;
         End = 1983;
         num = 1979;
-        TeamTotal = new TeamTotal(Start, End);
+        newValue = 1980;
         findPlayers = new Hashtable<>(); 
         str = new ArrayList<>();
 
@@ -83,8 +90,6 @@ public class TabSwitcher extends Application {
         str.add("Kyle Lowry");
 
         barData = new BarData(str);
-
-        barData.print();
 
         launch(args);
     }
@@ -95,6 +100,7 @@ public class TabSwitcher extends Application {
         
         Tab tab1 = new Tab("Tab 1");
 
+        TeamTotal = new TeamTotal(Start, newValue);
 
         dataCollection = new ArrayList<>();
 
@@ -141,8 +147,26 @@ public class TabSwitcher extends Application {
         for (int i = 0; i < TeamTotal.getTeamList().size(); i++){
             setDrilldownData(pie, teams.get(i), TeamTotal.getTeamList().get(i));
         }
+
         pie.setMaxSize(1000,1000);
-        tab2.setContent(pie);
+        Slider slider = new Slider();
+        slider.setMin(1979);
+        slider.setMax(2020);
+        slider.setValue(10);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setBlockIncrement(10);
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            //chart.getData().get(0).setPieValue(newValue.doubleValue());
+            System.out.println(newValue);
+            TeamTotal = new TeamTotal(Start, (int)newValue.doubleValue());
+        });
+        slider.setMaxSize(1000, 1000);
+        slider.setMinWidth(400);
+        
+        HBox hBox = new HBox(pie, slider);
+        HBox.setHgrow(pie, Priority.ALWAYS);
+        tab2.setContent(hBox);
         
         tabPane.getTabs().addAll(tab1, tab2);
 
@@ -172,8 +196,6 @@ public class TabSwitcher extends Application {
     }
 
         data.getNode().setOnMouseClicked((MouseEvent t) -> {
-            System.out.println(TeamName);
-            System.out.println(findPlayers.get(TeamName));
             pie.setData(FXCollections.observableArrayList(findPlayers.get(TeamName)));
         });
     }
