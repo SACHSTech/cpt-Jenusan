@@ -8,13 +8,8 @@ public class run {
     static BarData barData;
 
     public static void main(String[] args) {
-        ArrayList<String> str = new ArrayList<>();
 
-        str.add("LeBron James");
-        str.add("Giannis Antetokounmpo");
-
-        barData = new BarData();
-        barData.filler(str);
+        barData.filler("Ben Simmons");
 
         barData.print();
         
