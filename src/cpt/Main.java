@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 
+    //initializing a lot of variables
     static TeamTotal TeamTotal;
     static PlayerTotal playerTotal;
 
@@ -40,8 +41,6 @@ public class Main extends Application {
     static int Start;
     static int End;
     static int num;
-
-    static BarData barData;
 
     ArrayList<javafx.scene.chart.XYChart.Data> dataSet;
     ArrayList<Series> dataCollection;
@@ -72,7 +71,7 @@ public class Main extends Application {
     Tab tab1 = new Tab();
     Tab tab2 = new Tab();
 
-    singlePlayer singlePlayer;
+    SinglePlayer singlePlayer;
 
     static int newValue;
 
@@ -90,7 +89,7 @@ public class Main extends Application {
         Tab tab1 = new Tab("Bar Chart");
 
         dataList.setItems(Bardata);
-        barData = new BarData();
+
 
         dataList.setPrefSize(200, 200);
 
@@ -108,11 +107,13 @@ public class Main extends Application {
             @Override
             public void handle(MouseEvent event) {
                     String year = yearField.getText();
-                    singlePlayer = new singlePlayer(year);
-                    Bardata.add(year);
+                    singlePlayer = new SinglePlayer(year);
 
                     if (singlePlayer.totals.get(year) != null){
+                        Bardata.add(year);
                         series.getData().add(new XYChart.Data(year, singlePlayer.totals.get(year)));
+                    }else{
+                        Bardata.add(year + " (***Invalid Name***)");
                     }
                     yearField.clear();
             }
@@ -164,7 +165,7 @@ public class Main extends Application {
         StackPane root = new StackPane();
         root.getChildren().addAll(tabPane);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 1400, 900);
 
         primaryStage.setTitle("Tab Switcher");
         primaryStage.setScene(scene);

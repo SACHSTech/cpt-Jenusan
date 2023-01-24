@@ -7,22 +7,37 @@ public class POTW {
     private String team;
     private String year;
     
-    // constructor
+    /**
+     * constructor
+     * @param name player name 
+     * @param team team name
+     * @param year year
+     */
     public POTW(String name, String team, String year){
         this.name = name;
         this.team = team;
         this.year = year;
     }
 
-    // getter methods
+    /**
+     * get player anme
+     * @return
+     */
     public String getName(){
         return this.name;
     }
-
+    /**
+    * 
+    * @return team name
+    */
     public String getTeam(){
         return this.team;
     }
 
+    /**
+     * 
+     * @return year
+     */
     public String getYear(){
         return this.year;
     }

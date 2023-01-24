@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class TeamTotal {
 
+    // initializing variables
     Data longList;
     Hashtable<String, Integer> totals;
     Hashtable<String, Integer> usable;
@@ -14,7 +15,11 @@ public class TeamTotal {
     String line;
 
 
-
+    /**
+     * team total constructor
+     * @param start start year
+     * @param end end year
+     */
     public TeamTotal(int start, int end){
         longList = new Data();
         totals =  new Hashtable<String, Integer>();
@@ -22,6 +27,7 @@ public class TeamTotal {
         shortList = new ArrayList<>();
         shortList = new ArrayList<>();
         
+        // file IOs data
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             while((line = br.readLine()) != null){
@@ -32,6 +38,7 @@ public class TeamTotal {
             System.out.print(e);
         }
         
+        // fills in data with peramters as long as they fit into specified years
         for(int i = 0; i < longList.getLength(); i++){
             if (Integer.valueOf(longList.getYear(i)) <= start && Integer.valueOf(longList.getYear(i)) >= end){
                 shortList.add(longList.getInstance(i));
@@ -42,20 +49,32 @@ public class TeamTotal {
         }
     }
 
+    /**
+     * returns length of arraylist
+     */
     public int getLength(){
         return totals.size();
     }
+    /**
+     * returns arraylist to be used in other class
+     * @return
+     */
     public ArrayList<String> getTeamList(){
         return Teams;
     }
+    /**
+     * returns hashtable to be used in other class
+     * @return
+     */
     public Hashtable<String, Integer> getTable(){
         return totals;
     }
+    /**
+     * returns arraylist to be used in other class
+     * @return
+     */
     public ArrayList<POTW> getShortList(){
         return shortList;
-    }
-    public void print(){
-        System.out.println(totals.get("Toronto Raptors"));
     }
 
 
