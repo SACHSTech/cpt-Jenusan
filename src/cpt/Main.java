@@ -15,45 +15,16 @@ import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart.Series;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -90,12 +61,16 @@ public class Main extends Application {
     final CategoryAxis BarxAxis = new CategoryAxis();
     final NumberAxis BaryAxis = new NumberAxis();
     final BarChart<String,Number> bc = 
-        new BarChart<String,Number>(xAxis,yAxis);
+        new BarChart<String,Number>(BarxAxis,BaryAxis);
     XYChart.Series series = new XYChart.Series();
     TextField yearField = new TextField();
+    TextField valueField = new TextField();
     Button addButton = new Button("Add");
     ListView<String> dataList = new ListView<>();
     ObservableList<String> Bardata = FXCollections.observableArrayList();
+    TabPane tabPane = new TabPane();
+    Tab tab1 = new Tab();
+    Tab tab2 = new Tab();
 
     singlePlayer singlePlayer;
 
@@ -112,7 +87,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         TabPane tabPane = new TabPane();
-        Tab tab1 = new Tab("Tab 1");
+        Tab tab1 = new Tab("Bar Chart");
 
         dataList.setItems(Bardata);
         barData = new BarData();
@@ -145,14 +120,7 @@ public class Main extends Application {
 
         bc.getData().add(series);
 
-        //Scene Barscene  = new Scene(Barroot, 800, 600);
-        
-        ///////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////
-
-        Tab tab2 = new Tab("Tab 2");
+        Tab tab2 = new Tab("Pie Chart");
 
         TeamTotal = new TeamTotal(Start, End);
         
