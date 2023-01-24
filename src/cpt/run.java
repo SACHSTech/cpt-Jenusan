@@ -6,10 +6,16 @@ import java.util.ArrayList;
 
 public class run {
     static BarData barData;
+    static ArrayList<String> str;
 
     public static void main(String[] args) {
+        str = new ArrayList<>();
+        barData = new BarData();
 
-        barData.filler("Ben Simmons");
+        str.add("LeBron James");
+        str.add("Kawhi Leonard");
+
+        barData.filler(str);
 
         barData.print();
         

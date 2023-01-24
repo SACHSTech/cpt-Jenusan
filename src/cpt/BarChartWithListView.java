@@ -1,5 +1,7 @@
 package cpt;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,19 +27,25 @@ public class BarChartWithListView extends Application {
         new BarChart<String,Number>(xAxis,yAxis);
     XYChart.Series series = new XYChart.Series();
     TextField yearField = new TextField();
-    TextField valueField = new TextField();
     Button addButton = new Button("Add");
     ListView<String> dataList = new ListView<>();
     ObservableList<String> data = FXCollections.observableArrayList();
 
+    BarData barData;
+    singlePlayer singlePlayer;
+    ArrayList<String> players;
+
     @Override
     public void start(Stage stage) {
         dataList.setItems(data);
+        barData = new BarData();
+        players = new ArrayList<>();
+
         dataList.setPrefSize(200, 200);
 
         HBox inputBox = new HBox();
         inputBox.setSpacing(10);
-        inputBox.getChildren().addAll(yearField, valueField, addButton);
+        inputBox.getChildren().addAll(yearField, addButton);
 
         VBox root = new VBox();
         root.setSpacing(10);
@@ -47,12 +55,20 @@ public class BarChartWithListView extends Application {
         addButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String year = yearField.getText();
-                String value = valueField.getText();
-                data.add(year + ": " + value);
-                series.getData().add(new XYChart.Data(year, Integer.parseInt(value)));
-                yearField.clear();
-                valueField.clear();
+                try{
+                    String year = yearField.getText();
+                    singlePlayer = new singlePlayer(year);
+                    data.add(year);
+                    try{
+                        series.getData().add(new XYChart.Data(year, singlePlayer.totals.get(year)));
+                    }catch(Exception e){
+                        System.out.println(e);
+                    }
+                    
+                    yearField.clear();
+                }catch(Exception e){
+                    System.out.println("no");
+                }
             }
         });
 

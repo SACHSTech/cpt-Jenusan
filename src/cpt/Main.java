@@ -84,22 +84,31 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         barData = new BarData();
         dataCollection = new ArrayList<>();
-        str = "Damian Lillard";
+        str = "Stephen Curry";
         TabPane tabPane = new TabPane();
         
         Tab tab1 = new Tab("Bar Chart");
 
         ListView<String> listView = new ListView<>();
-        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard", "Kyle Lowry", "Damian Lillard");
+        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard");
         listView.setItems(items);
+
         // Add a listener to detect when an item is selected
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(newValue);
-            barData.filler(str);
-            
+            dataCollection = new ArrayList<>();
+            barData = new BarData();
+            barData.filler(newValue);
+
+            HBox hBox = new HBox(chart, listView);
+            chart.setMinSize(1250, 750);
+            hBox.setHgrow(chart, Priority.ALWAYS);
+            tab1.setContent(hBox);
         });
 
         barData.filler(str);
+
+        
 
             dataSet = new ArrayList<>();
             for (int x = 0; x < barData.yearTotalCollection.get(0).size(); x++){
