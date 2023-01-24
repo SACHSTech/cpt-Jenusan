@@ -11,6 +11,8 @@ public class TeamTotal {
     Hashtable<String, Integer> usable;
     ArrayList<POTW> shortList;
     ArrayList<String> Teams;
+
+    // file io from the teamlist
     String file = "src\\cpt\\0 Teamlist.txt";
     String line;
 
