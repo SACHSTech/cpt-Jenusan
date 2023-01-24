@@ -31,7 +31,7 @@ public class BarChartApp extends Application {
         ObservableList<BarChart.Series> barChartData =
             FXCollections.observableArrayList(
               new BarChart.Series("Apples", FXCollections.observableArrayList(
-                new BarChart.Data(years[0], 567d),
+                new BarChart.Data(years[0], 500),
                 new BarChart.Data(years[1], 1292d),
                 new BarChart.Data(years[2], 1292d))),
               new BarChart.Series("Lemons", FXCollections.observableArrayList(
