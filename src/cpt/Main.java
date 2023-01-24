@@ -37,6 +37,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -70,6 +87,18 @@ public class Main extends Application {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
 
+    final CategoryAxis BarxAxis = new CategoryAxis();
+    final NumberAxis BaryAxis = new NumberAxis();
+    final BarChart<String,Number> bc = 
+        new BarChart<String,Number>(xAxis,yAxis);
+    XYChart.Series series = new XYChart.Series();
+    TextField yearField = new TextField();
+    Button addButton = new Button("Add");
+    ListView<String> dataList = new ListView<>();
+    ObservableList<String> Bardata = FXCollections.observableArrayList();
+
+    singlePlayer singlePlayer;
+
     static int newValue;
 
     public static void main(String[] args) {
@@ -82,61 +111,41 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        barData = new BarData();
-        dataCollection = new ArrayList<>();
-        str = "Stephen Curry";
         TabPane tabPane = new TabPane();
-        
-        Tab tab1 = new Tab("Bar Chart");
+        Tab tab1 = new Tab("Tab 1");
 
-        ListView<String> listView = new ListView<>();
-        ObservableList<String> items = FXCollections.observableArrayList("Giannis Antetokounmpo", "Kyle Lowry", "Damian Lillard");
-        listView.setItems(items);
+        dataList.setItems(Bardata);
+        barData = new BarData();
 
-        // Add a listener to detect when an item is selected
-        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
-            dataCollection = new ArrayList<>();
-            barData = new BarData();
-            barData.filler(newValue);
+        dataList.setPrefSize(200, 200);
 
-            HBox hBox = new HBox(chart, listView);
-            chart.setMinSize(1250, 750);
-            hBox.setHgrow(chart, Priority.ALWAYS);
-            tab1.setContent(hBox);
+        HBox inputBox = new HBox();
+        inputBox.setSpacing(10);
+        inputBox.getChildren().addAll(yearField, addButton);
+
+        VBox Barroot = new VBox();
+        Barroot.setSpacing(10);
+        Barroot.setPadding(new Insets(10, 10, 10, 10));
+        Barroot.getChildren().addAll(bc, inputBox, dataList);
+        tab1.setContent(Barroot);
+
+        addButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                    String year = yearField.getText();
+                    singlePlayer = new singlePlayer(year);
+                    Bardata.add(year);
+
+                    if (singlePlayer.totals.get(year) != null){
+                        series.getData().add(new XYChart.Data(year, singlePlayer.totals.get(year)));
+                    }
+                    yearField.clear();
+            }
         });
 
-        barData.filler(str);
+        bc.getData().add(series);
 
-        
-
-            dataSet = new ArrayList<>();
-            for (int x = 0; x < barData.yearTotalCollection.get(0).size(); x++){
-                barChartData = new BarChart.Data(barData.yearList.get(yearCount), barData.yearTotalCollection.get(0).get(barData.yearList.get(yearCount)));
-                dataSet.add(barChartData);
-
-                yearCount++;
-            }
-            BarChartSeries = new BarChart.Series(barData.getPlayerList(), FXCollections.observableArrayList(dataSet));
-            dataCollection.add(BarChartSeries);
-
-        
-        String[] years = barData.getYears();
-
-        xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList(years));
-        yAxis = new NumberAxis("Player Of The Weeks", 0.0d, barData.getMax() * 1.1 , 10.0d);
-        ObservableList<BarChart.Series> barChartData = FXCollections.observableArrayList(dataCollection);
-
-
-        chart = new BarChart(xAxis, yAxis, barChartData, 25.0d);
-        chart.setMaxSize(1000, 1000);
-
-
-        HBox hBox = new HBox(chart, listView);
-        chart.setMinSize(1250, 750);
-        hBox.setHgrow(chart, Priority.ALWAYS);
-        tab1.setContent(hBox);
+        //Scene Barscene  = new Scene(Barroot, 800, 600);
         
         ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
